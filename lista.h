@@ -50,6 +50,9 @@ node *getNode (int i, node *head);
  */
 int sort (node **lista, int (*compare) (node *a, node *b), int order);
 
+/*
+ * reverte a ordem da lista
+ */
 void revert (node **lista);
 
 #endif
