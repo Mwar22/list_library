@@ -68,8 +68,9 @@ int main()
   addAt (new (l),3, &head);
   prt(head);
   
-  printf("+++++++++++++\n");
-  sort (&head, compare); /*passa endereço do ponteiro de head, e a função de comparação*/
+  printf("++++++++++++7+\n");
+  
+  sort (&head, compare, decrescente); /*passa endereço do ponteiro de head, e a função de comparação*/
   prt(head);
   
   
@@ -81,8 +82,12 @@ int main()
 
 int compare (node *a, node *b)
 {
-  int r =  (*((int *) a->data) > *((int *) b->data))? 1:0;
-  return r;
+  if (*((int *) a->data) > *((int *) b->data))
+      return 1;
+    else if (*((int *) a->data) < *((int *) b->data))
+      return -1;
+    
+  return 0;
 }
 
 

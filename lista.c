@@ -14,12 +14,11 @@ void pt (node *head)
 }
 
 /*--------------------------*/
-int sort (node **lista, int (*compare) (node *a, node *b))
+int sort (node **lista, int (*compare) (node *a, node *b),int od)
 {
   int i;
   int trocado = 0;
   int sz = getSize(*lista);
-  
   
   
   if (*lista == NULL)
@@ -69,6 +68,9 @@ int sort (node **lista, int (*compare) (node *a, node *b))
         
     }
   while (trocado == 1);
+  
+  if (od == decrescente)
+    revert (lista);
  
 }
 
@@ -263,7 +265,7 @@ void revert (node **lista)
   node *last = getNode (getSize(*lista) - 1, *lista);
   node *after_head = NULL;
   
-  do
+  while ( *lista != last)
     {
       after_head = (*lista)->next;
       (*lista)->next = last->next;
@@ -271,7 +273,6 @@ void revert (node **lista)
       
       *lista = after_head;
     }
-  while ( *lista != last);
 }
 
 

@@ -1,6 +1,11 @@
 #ifndef LISTA_H
 #define LISTA_H
 
+enum
+{
+  crescente,
+  decrescente
+};
 
 
 typedef struct node
@@ -41,8 +46,9 @@ node *getNode (int i, node *head);
 
 /*ordena a lista, recebe dois parametros, um é o ponteiro para o ponteiro de head,
  * o outro é o endereço de uma função de ordenação (vc declara uma função que retorne uma função que retorna um int com dois parametros, um nó a e um b)
+ * na ordem especificada por order (passe 'crescente' ou 'decrescente')
  */
-int sort (node **lista, int (*compare) (node *a, node *b));
+int sort (node **lista, int (*compare) (node *a, node *b), int order);
 
 void revert (node **lista);
 
