@@ -18,6 +18,10 @@ node;
 /*cria novo elemento da lista, o qual pode ser qualquer tipo de elemento (passa-se o endereço do mesmo)*/
 node *new (void *data);
 
+/*apaga uma lista*/
+void delete (node **head);
+
+
 /*adiciona novo elemento à lista (pela cabeça da lista), pt_to_head é um ponteiro para o seu ponteiro do head*/
 node *addAtTail (node *no, node **pt_to_head);  
 

@@ -77,7 +77,17 @@ int main()
   printf ("\n\ntest- revert\n");
   revert (&head);
   prt(head);
-
+  
+  printf ("\n\ntest- revert\n");
+  
+  
+  printf ("\n\ntest- delete\n");
+  
+  delete (&head);
+  if (head == NULL)
+  {
+    printf ("\nLISTA VAZIA\n");
+  }
 }
 
 int compare (node *a, node *b)

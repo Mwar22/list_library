@@ -161,6 +161,17 @@ node *addAt (node *no, int position, node **pt_to_head)
         
 }
 
+void delete (node **head)
+{
+  node *ahead = *head;
+  while (*head != NULL)
+    {
+      ahead = ahead->next;
+      free (*head);
+      *head = ahead;
+    }
+}
+
 int delAt (int position, node **pt_to_head)
 {
   if (position*sgn(position) >= getSize(*pt_to_head))
