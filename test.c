@@ -72,8 +72,10 @@ int main()
   sort (&head, compare); /*passa endereço do ponteiro de head, e a função de comparação*/
   prt(head);
   
-  node *hue = getNode (0, head);
-  printf ("uuu %d", *((int *) hue->data));
+  
+  printf ("\n\ntest- revert\n");
+  revert (&head);
+  prt(head);
 
 }
 

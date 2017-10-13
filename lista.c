@@ -257,6 +257,24 @@ node *join (node **head, node **main_head)
   return *main_head;
 }
 
+
+void revert (node **lista)
+{
+  node *last = getNode (getSize(*lista) - 1, *lista);
+  node *after_head = NULL;
+  
+  do
+    {
+      after_head = (*lista)->next;
+      (*lista)->next = last->next;
+      last->next = *lista;
+      
+      *lista = after_head;
+    }
+  while ( *lista != last);
+}
+
+
 int sgn (int i)
 {
   if (i > 0)

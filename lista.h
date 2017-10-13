@@ -44,4 +44,6 @@ node *getNode (int i, node *head);
  */
 int sort (node **lista, int (*compare) (node *a, node *b));
 
+void revert (node **lista);
+
 #endif
