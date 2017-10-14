@@ -1,5 +1,6 @@
 #include "lista.h"
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 
 /*Funções internas---------*/
@@ -282,6 +283,19 @@ void revert (node **lista)
     }
 }
 
+
+node *copy (node *head)
+{
+  node *ret = NULL;
+  while (head != NULL)
+    {
+      node *tmp = new (NULL);
+      memcpy (tmp, head, sizeof (node));
+      addAtTail (tmp, &ret);
+      head = head->next;
+    }
+  return ret;
+}
 
 int sgn (int i)
 {

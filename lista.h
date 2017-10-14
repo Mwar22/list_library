@@ -21,6 +21,9 @@ node *new (void *data);
 /*apaga uma lista*/
 void delete (node **head);
 
+/*gera uma copia da lista... lista*/
+node *copy (node *head);
+
 
 /*adiciona novo elemento à lista (pela cabeça da lista), pt_to_head é um ponteiro para o seu ponteiro do head*/
 node *addAtTail (node *no, node **pt_to_head);  
