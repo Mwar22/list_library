@@ -16,62 +16,50 @@ void pt (node *head)
 /*--------------------------*/
 int sort (node **lista, int (*compare) (node *a, node *b),int od)
 {
-  int i;
-  int trocado = 0;
-  int sz = getSize(*lista);
-  
-  
-  if (*lista == NULL)
+  if (*lista == NULL || (*lista)->next == NULL)
     return -1;
   
-  
+  int trocou;
   do
     {
-      trocado = 0;
-      node *ant = NULL;
-      node *atual =  *lista;
-      node *prox = atual->next;
+      trocou = 0;
+      node *a = NULL;
+      node *b = *lista;
+      node *c = b->next;
       
-      for (i = 0; i < sz  -1; i++)
+      while (c != NULL)
         {
-            
-          
-             
-              if ((*compare) (atual, prox) == 1)
-                {
-                    atual->next = prox->next;
-                    prox->next = atual;
+          int cmp = (*compare) (b,c);
+          if ((cmp == -1 && od == decrescente) || (cmp == 1 && od == crescente))
+            {
+              trocou = 1;
+              b->next = c->next;
+              c->next = b;
+              
+              if (a == NULL)  /*primeira rodada*/
+              {
+                *lista = c;
+                a = c;
+              }
+              else
+              {
+                a->next = c;
+                a = c;
+              }
+              
+              c = b->next;
 
-                  if (ant != NULL)
-                    {
-                      ant->next = prox;
-                      ant = prox;
-                      prox =  atual->next;
-                    }
-                    else
-                    {
-                      *lista = prox;
-                      prox = atual->next;
-                    }
-                   
-                  trocado = 1;
-                }
-                else
-                  {
-                    ant = atual;
-                    atual = prox;
-                    prox =  prox->next;
-                  }
-
+            }
+            else
+              {
+                a = b;
+                b = c;
+                c = c->next;
+              }
         }
-          
-        
+      
     }
-  while (trocado == 1);
-  
-  if (od == decrescente)
-    revert (lista);
- 
+  while (trocou == 1);
 }
 
 
@@ -104,6 +92,8 @@ node *addAtTail (node *no, node **list_head)
         else  /*não está vazio*/
           *list_head = no;
         
+        no->next = NULL;
+        
       return no;  /*se deu certo, retorna o ultimo elemento*/
     }
     else
@@ -122,7 +112,10 @@ node *addAtHead (node *no, node **pt_to_head)
           *pt_to_head = no;
         }
         else
+        {
           *pt_to_head = no;
+          no->next = NULL;
+        }
         
       return no;
     }
@@ -167,6 +160,7 @@ void delete (node **head)
   while (*head != NULL)
     {
       ahead = ahead->next;
+      free((*head)->data);
       free (*head);
       *head = ahead;
     }
@@ -184,6 +178,7 @@ int delAt (int position, node **pt_to_head)
     {
       node *tmp =  *pt_to_head;
       *pt_to_head = (*pt_to_head)->next;
+      free(tmp->data);
       free (tmp);
       return 0;
     }
@@ -193,6 +188,7 @@ int delAt (int position, node **pt_to_head)
         node *pos  = anterior != NULL? anterior->next: NULL;
         
         anterior->next = pos->next;
+        free(pos->data);
         free (pos);
         return 0;
       }
