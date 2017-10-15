@@ -257,13 +257,14 @@ node *split (int i, node *head)
 
 node *join (node **head, node **main_head)
 {
-  node *tail_old = getNode (getSize(*main_head) -1, *main_head);
+  node *tail_old = (*main_head == NULL)? NULL:getNode (getSize(*main_head) -1, *main_head);
   
   if (tail_old == NULL)
     *main_head = *head;
   else
         tail_old->next = *head;
   
+  *head = NULL;
   return *main_head;
 }
 
@@ -282,7 +283,6 @@ void revert (node **lista)
       *lista = after_head;
     }
 }
-
 
 node *copy (node *head)
 {
