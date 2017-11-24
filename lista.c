@@ -289,8 +289,7 @@ node *copy (node *head)
   node *ret = NULL;
   while (head != NULL)
     {
-      node *tmp = new (NULL);
-      memcpy (tmp, head, sizeof (node));
+      addAtTail (new (head->data), &ret);
       addAtTail (tmp, &ret);
       head = head->next;
     }
