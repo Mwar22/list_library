@@ -290,7 +290,6 @@ node *copy (node *head)
   while (head != NULL)
     {
       addAtTail (new (head->data), &ret);
-      addAtTail (tmp, &ret);
       head = head->next;
     }
   return ret;
