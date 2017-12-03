@@ -155,13 +155,24 @@ node *addAt (node *no, int position, node **pt_to_head)
         
 }
 
-void delete (node **head)
+void hard_delete (node **head)
 {
   node *ahead = *head;
   while (*head != NULL)
     {
       ahead = ahead->next;
       free((*head)->data);
+      free (*head);
+      *head = ahead;
+    }
+}
+
+void delete (node **head)
+{
+  node *ahead = *head;
+  while (*head != NULL)
+    {
+      ahead = ahead->next;
       free (*head);
       *head = ahead;
     }

@@ -20,6 +20,7 @@ node *new (void *data);
 
 /*apaga uma lista*/
 void delete (node **head);
+void hard_delete (node **head);
 
 /*gera uma copia da lista... lista*/
 node *copy (node *head);
